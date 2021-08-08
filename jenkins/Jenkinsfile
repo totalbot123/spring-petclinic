@@ -5,7 +5,8 @@ pipeline {
     stage('Build') {
       steps {
         echo 'Builing *jar file'
-        sh "cd $WORKSPACE && ./jenkins/mvn.sh -B -DskipTests clean package"
+        sh "cd $WORKSPACE"
+        sh './jenkins/mvn.sh -B -DskipTests clean package"'
       }
     }
     stage('Test') {
