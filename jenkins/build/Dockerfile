@@ -3,6 +3,7 @@ FROM openjdk:8u302-jre-slim
 ARG WORKSPACE
 
 RUN echo $WORKSPACE/target/*jar
+RUN ["/bin/bash", "-c", "ls -ltra $WORKSPACE"]
 RUN ["/bin/bash", "-c", "ls -ltra $WORKSPACE/target/"]
 COPY $WORKSPACE/target/*jar /usr/app.jar
 
