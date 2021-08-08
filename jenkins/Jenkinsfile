@@ -1,15 +1,12 @@
 pipeline {
   agent any
 
-  parameters {
-    string(name: 'name', defaultValue: '', description: 'Name of the docker image to be built and stored in docker registry.')
-  }
-
   stages {
     stage('Build') {
       steps {
         echo 'Builing *jar file'
         sh "echo $PWD"
+        sh "echo $WORKSPACE"
         sh "./jenkins/mvn.sh -B -DskipTests clean package"
       }
     }
@@ -22,8 +19,8 @@ pipeline {
     stage('Artefact') {
       steps {
         echo 'Builing java image file'
-        sh "./jenkins/build/build_image.sh ${params.name} ${BUILD_NUMBER}"
-        sh "./jenkins/artifact/push.sh ${params.name} ${BUILD_NUMBER}"
+        sh "./jenkins/build/build_image.sh ${JOB_NAME} ${BUILD_NUMBER}"
+        sh "./jenkins/artifact/push.sh ${JOB_NAME} ${BUILD_NUMBER}"
       }
     }
   }
