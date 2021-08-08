@@ -1,0 +1,16 @@
+pipeline {
+  agent any
+
+  parameters {
+    string(name: 'image', defaultValue: '', description: 'Docker image to be deployed')
+  }
+
+  stages {
+    stage('Deploy') {
+      steps {
+        echo 'Builing java image file'
+        sh "./deploy/deploy.sh ${params.image}"
+      }
+    }
+  }
+}

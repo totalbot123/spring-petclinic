@@ -1,0 +1,32 @@
+version: '3'
+
+services:
+  
+  jenkins:
+    image: jenkins/jenkins
+    container_name: jenkins
+    volumes:
+      - '/var/run/docker.sock:/var/run/docker.sock'
+      - '/usr/local/bin/docker:/usr/bin/docker'
+      - '$HOME/spring-petclinic:/var/jenkins_home/spring-petclinic'
+    ports:
+      - 8090:8080
+    networks:
+      - net
+
+  registry:
+    image: registry:latest
+    container_name: registry
+    #    volumes: 
+    #      - '$PWD/certs:/certs/'
+    #    environment:
+    #      - REGISTRY_HTTP_ADDR=0.0.0.0:443
+    #      - REGISTRY_HTTP_TLS_CERTIFICATE=/certs/test.crt
+    #      - REGISTRY_HTTP_TLS_KEY=/certs/test.key
+    ports:
+      - 5000:5000
+    networks:
+      - net
+
+networks:
+  net:

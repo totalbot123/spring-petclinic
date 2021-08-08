@@ -1,0 +1,28 @@
+pipeline {
+  agent any
+
+  parameters {
+    string(name: 'name', defaultValue: '', description: 'Name of the docker image to be built and stored in docker registry.')
+  }
+
+  stages {
+    stage('Build') {
+      steps {
+        echo 'Builing *jar file'
+        sh "./mvn.sh -B -DskipTests clean package"
+      }
+    }
+    stage('Test') {
+      steps {
+        echo 'Running tests'
+        sh "./mvn.sh test"
+    }
+    stage('Artefact') {
+      steps {
+        echo 'Builing java image file'
+        sh "./build/build_image.sh ${params.name} ${BUILD_NUMBER}"
+        sh "./artifact/push.sh ${params.name} ${BUILD_NUMBER}"
+      }
+    }
+  }
+}
