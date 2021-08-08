@@ -9,20 +9,20 @@ pipeline {
     stage('Build') {
       steps {
         echo 'Builing *jar file'
-        sh "./mvn.sh -B -DskipTests clean package"
+        sh "./jenkins/mvn.sh -B -DskipTests clean package"
       }
     }
     stage('Test') {
         steps {
           echo 'Running tests'
-          sh "./mvn.sh test"
+          sh "./jenkins/mvn.sh test"
       }
     }
     stage('Artefact') {
       steps {
         echo 'Builing java image file'
-        sh "./build/build_image.sh ${params.name} ${BUILD_NUMBER}"
-        sh "./artifact/push.sh ${params.name} ${BUILD_NUMBER}"
+        sh "./jenkins/build/build_image.sh ${params.name} ${BUILD_NUMBER}"
+        sh "./jenkins/artifact/push.sh ${params.name} ${BUILD_NUMBER}"
       }
     }
   }

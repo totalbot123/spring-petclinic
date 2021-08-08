@@ -9,7 +9,7 @@ pipeline {
     stage('Deploy') {
       steps {
         echo 'Builing java image file'
-        sh "./deploy/deploy.sh ${params.image}"
+        sh "./jenkins/deploy/deploy.sh ${params.image}"
       }
     }
   }
