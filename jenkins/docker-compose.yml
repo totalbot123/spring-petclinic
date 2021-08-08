@@ -9,7 +9,7 @@ services:
     container_name: jenkins
     volumes:
       - '/var/run/docker.sock:/var/run/docker.sock'
-      - '$HOME/jenkins_home:/var/jenkins_home'
+      - '/var/jenkins_home:/var/jenkins_home'
       - '$HOME/spring-petclinic:/var/jenkins_home/spring-petclinic'
       - '$HOME/.m2:/var/jenkins_home/.m2'
     ports:
