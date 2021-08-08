@@ -8,12 +8,12 @@ pipeline {
         sh "cd $WORKSPACE && ./jenkins/mvn.sh -B -DskipTests clean package"
       }
     }
-    stage('Test') {
-        steps {
-          echo 'Running tests'
-          sh "cd $WORKSPACE && ./jenkins/mvn.sh test"
-      }
-    }
+    // stage('Test') {
+    //     steps {
+    //       echo 'Running tests'
+    //       sh "cd $WORKSPACE && ./jenkins/mvn.sh test"
+    //   }
+    // }
     stage('Artefact') {
       steps {
         echo 'Builing java image file'

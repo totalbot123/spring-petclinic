@@ -1,7 +1,7 @@
 FROM openjdk:8u302-jre-slim
 
-COPY $WORKSPACE/target/*jar /usr/target/app.jar
+COPY $WORKSPACE/target/*jar /usr/app.jar
 
-WORKDIR /usr/target
+WORKDIR /usr
 
 CMD ["java", "-jar", "app.jar"]
