@@ -9,6 +9,7 @@ pipeline {
     stage('Build') {
       steps {
         echo 'Builing *jar file'
+        sh "echo $PWD"
         sh "./jenkins/mvn.sh -B -DskipTests clean package"
       }
     }
