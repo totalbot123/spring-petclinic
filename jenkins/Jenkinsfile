@@ -5,7 +5,7 @@ pipeline {
     stage('Build') {
       steps {
         echo 'Builing *jar file'
-        sh "cd $WORKSPACE && ./jenkins/mvn.sh -B -DskipTests clean package"
+        sh "./jenkins/mvn.sh -B -DskipTests clean package"
       }
     }
     // stage('Test') {
@@ -17,8 +17,8 @@ pipeline {
     stage('Artefact') {
       steps {
         echo 'Builing java image file'
-        sh "cd $WORKSPACE && ./jenkins/build/build_image.sh ${JOB_NAME} ${BUILD_NUMBER}"
-        sh "cd $WORKSPACE && ./jenkins/artifact/push.sh ${JOB_NAME} ${BUILD_NUMBER}"
+        sh "./jenkins/build/build_image.sh ${JOB_NAME} ${BUILD_NUMBER}"
+        sh "./jenkins/artifact/push.sh ${JOB_NAME} ${BUILD_NUMBER}"
       }
     }
   }
