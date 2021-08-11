@@ -2,6 +2,9 @@ pipeline {
   agent any
 
   stages {
+    stage('') {
+      echo 'hehe'
+    }
     // stage('Build') {
     //   steps {
     //     echo 'Builing *jar file'
