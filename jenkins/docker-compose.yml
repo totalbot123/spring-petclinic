@@ -20,12 +20,6 @@ services:
   registry:
     image: registry:latest
     container_name: registry
-    #    volumes: 
-    #      - '$PWD/certs:/certs/'
-    #    environment:
-    #      - REGISTRY_HTTP_ADDR=0.0.0.0:443
-    #      - REGISTRY_HTTP_TLS_CERTIFICATE=/certs/test.crt
-    #      - REGISTRY_HTTP_TLS_KEY=/certs/test.key
     ports:
       - 5000:5000
     networks:

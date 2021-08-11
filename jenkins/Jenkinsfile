@@ -7,24 +7,24 @@ pipeline {
         echo 'hehe'
       }
     }
-    // stage('Build') {
-    //   steps {
-    //     echo 'Builing *jar file'
-    //     sh "./jenkins/mvn.sh -B -DskipTests clean package"
-    //   }
-    // }
-    // // stage('Test') {
-    // //     steps {
-    // //       echo 'Running tests'
-    // //       sh "cd $WORKSPACE && ./jenkins/mvn.sh test"
-    // //   }
-    // // }
-    // stage('Artefact') {
-    //   steps {
-    //     echo 'Builing java image file'
-    //     sh "./jenkins/build/build_image.sh ${JOB_NAME} ${BUILD_NUMBER}"
-    //     sh "./jenkins/artifact/push.sh ${JOB_NAME} ${BUILD_NUMBER}"
-    //   }
-    // }
+    stage('Build') {
+      steps {
+        echo 'Builing *jar file'
+        sh "./jenkins/mvn.sh -B -DskipTests clean package"
+      }
+    }
+    stage('Test') {
+        steps {
+          echo 'Running tests'
+          sh "cd $WORKSPACE && ./jenkins/mvn.sh test"
+      }
+    }
+    stage('Artefact') {
+      steps {
+        echo 'Builing java image file'
+        sh "./jenkins/build/build_image.sh ${JOB_NAME} ${BUILD_NUMBER}"
+        sh "./jenkins/artifact/push.sh ${JOB_NAME} ${BUILD_NUMBER}"
+      }
+    }
   }
 }
